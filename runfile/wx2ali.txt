@@ -1,36 +1,47 @@
 //		JSmethod
-		us.addUpdateMethods("request", "httpRequest");//函数名转换request->httpRequest
-		us.addUpdateMethods("login", "getAuthCode");//login->getAuthCode
-		us.addUpdateMethods("showModal", "confirm");//showModal->confirm
+//		us.addUpdateMethods("request", "httpRequest");//函数名转换request->httpRequest
+//		us.addUpdateMethods("login", "getAuthCode");//login->getAuthCode
+//		us.addUpdateMethods("showModal", "confirm");//showModal->confirm
 //		JS
-		us.addJSRegexp("getStorageSync\(\s*(\S+)\s*\)", "getStorageSync({key:$1})");//getStorageSync的参数形式转换
-		us.addJSRegexp("setStorageSync\(\s*(\S+)\s*\,\s*(\S+)\s*\)", "setStorageSync({key:$1,data:$2})");//setStorageSync的参数形式转换
-		us.addJSRegexp("removeStorageSync\(\s*(\S+)\s*\)", "removeStorageSync({key:$1})");//removeStorageSync的参数形式转换
-		us.addJSRegexp("(\S+)\s*:\s*function", "$1");//object中函数转为es6推荐的函数
+//		us.addJSRegexp("getStorageSync\(\s*(\S+)\s*\)", "getStorageSync({key:$1})");//getStorageSync的参数形式转换
+//		us.addJSRegexp("setStorageSync\(\s*(\S+)\s*\,\s*(\S+)\s*\)", "setStorageSync({key:$1,data:$2})");//setStorageSync的参数形式转换
+//		us.addJSRegexp("removeStorageSync\(\s*(\S+)\s*\)", "removeStorageSync({key:$1})");//removeStorageSync的参数形式转换
+//		us.addJSRegexp("(\S+)\s*:\s*function", "$1");//object中函数转为es6推荐的函数
 //		AXML
-		us.addAXMLRegexp("(^|\s+)wx:", "$1a:");//修改wx的标签变为a的标签
-		us.addAXMLRegexp("(^|\s+)bindtap(\s*=)", "$1onTap$2");//修改bindtap为onTap
-		us.addAXMLRegexp("(^|\s+)bindlongTap(\s*=)", "$1onLongTap$2");//修改bindlongTap为onLongTap
-		us.addAXMLRegexp("(^|\s+)bindinput(\s*=)", "$1onInput$2");//修改bindinput为onInput
-		us.addAXMLRegexp("(^|\s+)bind(\w+)(\s*=)", "$1on$2$3");//修改bind为on
-文件目录
+//		us.addAXMLRegexp("(^|\s+)wx:", "$1a:");//修改wx的标签变为a的标签
+//		us.addAXMLRegexp("(^|\s+)bindtap(\s*=)", "$1onTap$2");//修改bindtap为onTap
+//		us.addAXMLRegexp("(^|\s+)bindlongTap(\s*=)", "$1onLongTap$2");//修改bindlongTap为onLongTap
+//		us.addAXMLRegexp("(^|\s+)bindinput(\s*=)", "$1onInput$2");//修改bindinput为onInput
+//		us.addAXMLRegexp("(^|\s+)bind(\w+)(\s*=)", "$1on$2$3");//修改bind为on
+==============================
+*以utf-8编码编写 有新的匹配规则可以告诉我 我来进行添加
+==============================
+-----------------
+文件目录 
+-----------------
 DIR
 Z:\Program\workspaces\wx\LogisticsCabinetwc\trunk\LogisticsCabinetwc
 end
+-----------------
 js方法的替换
+-----------------
 JSmethod
 	request--->httpRequest
 	login--->getAuthCode
 	showModal--->confirm
 end
+-----------------
 js中的内容替换
+-----------------
 JS
 	getStorageSync\(\s*(\S+)\s*\)--->getStorageSync({key:$1})
 	setStorageSync\(\s*(\S+)\s*\,\s*(\S+)\s*\)--->setStorageSync({key:$1,data:$2})
 	removeStorageSync\(\s*(\S+)\s*\)--->removeStorageSync({key:$1})
 	(\S+)\s*:\s*function--->$1
 end
+-----------------
 axml中的内容替换
+-----------------
 AXML
 	(^||\s+)wx:--->$1a:
 	(^||\s+)bindtap(\W+)--->$1onTap$2
