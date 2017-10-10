@@ -3,6 +3,7 @@ package com.text.parser;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 import org.apache.commons.io.FileUtils;
@@ -52,7 +53,7 @@ public class Wx2Ant {
 		Wx2Ant us = new Wx2Ant();
 		String dir = "";// alibaba目录
 		System.out.println("工作目录："+System.getProperty("user.dir"));
-		String configPath=System.getProperty("user.dir")+"wx2ali.txt";
+		String configPath=System.getProperty("user.dir")+File.separator+"wx2ali.txt";
 //		String configPath="z:/wx2ali.txt";
 		try {
 			LineIterator li=FileUtils.lineIterator(new File(configPath), "utf-8");

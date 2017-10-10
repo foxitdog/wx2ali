@@ -15,12 +15,13 @@
 //		us.addAXMLRegexp("(^|\s+)bind(\w+)(\s*=)", "$1on$2$3");//修改bind为on
 ==============================
 *以utf-8编码编写 有新的匹配规则可以告诉我 我来进行添加
+*注意：以DIR,JSmethod,JS,AXML为开始，以end结尾。如果不会请按模版修改
 ==============================
 -----------------
 文件目录 
 -----------------
 DIR
-Z:\Program\workspaces\wx\LogisticsCabinetwc\trunk\LogisticsCabinetwc
+	Z:\Program\workspaces\wx\LogisticsCabinetwc\trunk\LogisticsCabinetxx
 end
 -----------------
 js方法的替换
