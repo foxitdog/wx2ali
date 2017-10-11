@@ -1,0 +1,14 @@
+{
+  "name": "wx2ali",
+  "version": "1.0.1",
+  "scripts": {
+    "start": "node ./index.js"
+  },
+  "dependencies": {
+        "linebyline": "1.3.0"
+      },
+  "bin": {
+    "wx2ali": "index.js"
+  },
+  "main":"index.js"
+}

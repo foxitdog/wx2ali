@@ -1,0 +1,38 @@
+==============================
+*以utf-8编码编写 有新的匹配规则可以告诉我 我来进行添加
+==============================
+-----------------
+文件目录 
+-----------------
+DIR
+Z:\Program\workspaces\wx\LogisticsCabinetwc\trunk\LogisticsCabinetwc
+end
+-----------------
+js方法的替换
+-----------------
+JSmethod
+	request--->httpRequest
+	login--->getAuthCode
+	showModal--->confirm
+end
+-----------------
+js中的内容替换
+-----------------
+JS
+	getStorageSync\(\s*(\S+)\s*\)--->getStorageSync({key:$1})
+	setStorageSync\(\s*(\S+)\s*\,\s*(\S+)\s*\)--->setStorageSync({key:$1,data:$2})
+	removeStorageSync\(\s*(\S+)\s*\)--->removeStorageSync({key:$1})
+	(\S+)\s*:\s*function--->$1
+end
+-----------------
+axml中的内容替换
+-----------------
+AXML
+	(^||\s+)wx:--->$1a:
+	(^||\s+)bindtap(\W+)--->$1onTap$2
+	(^||\s+)bindlongTap(\W+)--->$1onLongTap$2
+	(^||\s+)bindinput(\W+)--->$1onInput$2
+	(^||\s+)bind(\w+)(\W+)--->$1on$2$3
+end
+
+OVER

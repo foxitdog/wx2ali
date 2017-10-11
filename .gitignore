@@ -1,3 +1,4 @@
 .settings
 .project
 bin
+node/node_modules
