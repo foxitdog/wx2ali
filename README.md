@@ -16,7 +16,8 @@
 ### 安装 ###
 	npm i wx2ali -g
 ### 使用 ###
-	在使用前可以根据自己需要修改module下的wx2ali.txt配置，
+	复制微信小程序的源码一份；
+	根据自己需要修改node_module下的wx2ali\wx2ali.txt配置，
 	来进行修改工作目录
 	之后，命令行直接输入:
 	wx2ali
