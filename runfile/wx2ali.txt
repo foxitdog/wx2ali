@@ -1,27 +1,12 @@
-//		JSmethod
-//		us.addUpdateMethods("request", "httpRequest");//函数名转换request->httpRequest
-//		us.addUpdateMethods("login", "getAuthCode");//login->getAuthCode
-//		us.addUpdateMethods("showModal", "confirm");//showModal->confirm
-//		JS
-//		us.addJSRegexp("getStorageSync\(\s*(\S+)\s*\)", "getStorageSync({key:$1})");//getStorageSync的参数形式转换
-//		us.addJSRegexp("setStorageSync\(\s*(\S+)\s*\,\s*(\S+)\s*\)", "setStorageSync({key:$1,data:$2})");//setStorageSync的参数形式转换
-//		us.addJSRegexp("removeStorageSync\(\s*(\S+)\s*\)", "removeStorageSync({key:$1})");//removeStorageSync的参数形式转换
-//		us.addJSRegexp("(\S+)\s*:\s*function", "$1");//object中函数转为es6推荐的函数
-//		AXML
-//		us.addAXMLRegexp("(^|\s+)wx:", "$1a:");//修改wx的标签变为a的标签
-//		us.addAXMLRegexp("(^|\s+)bindtap(\s*=)", "$1onTap$2");//修改bindtap为onTap
-//		us.addAXMLRegexp("(^|\s+)bindlongTap(\s*=)", "$1onLongTap$2");//修改bindlongTap为onLongTap
-//		us.addAXMLRegexp("(^|\s+)bindinput(\s*=)", "$1onInput$2");//修改bindinput为onInput
-//		us.addAXMLRegexp("(^|\s+)bind(\w+)(\s*=)", "$1on$2$3");//修改bind为on
 ==============================
 *以utf-8编码编写 有新的匹配规则可以告诉我 我来进行添加
-*注意：以DIR,JSmethod,JS,AXML为开始，以end结尾。如果不会请按模版修改
+*注意：以DIR,JSmethod,JS,AXML为开始，以end结尾，#为注释。如果不会请按模版修改
 ==============================
 -----------------
 文件目录 
 -----------------
 DIR
-	Z:\Program\workspaces\wx\LogisticsCabinetwc\trunk\LogisticsCabinetxx
+	Z:\Program\workspaces\wx\LogisticsCabinetwc\trunk\LogisticsCabinetwc
 end
 -----------------
 js方法的替换
@@ -50,3 +35,20 @@ AXML
 	(^||\s+)bindinput(\W+)--->$1onInput$2
 	(^||\s+)bind(\w+)(\W+)--->$1on$2$3
 end
+-----------------
+json中的内容替换
+-----------------
+JSON
+	(^||\s+\W)navigationBarTextStyle(\W)--->$1titleBarColor$2
+	(^||\s+\W)navigationBarTitleText(\W)--->$1defaultTitle$2
+	(^||\s+\W)enablePullDownRefresh(\W)--->$1pullRefresh$2
+	(^||\s+\W)disableScroll(\W)--->$1allowsBounceVertical$2
+	(^||\s+\W)color(\W)--->$1textColor$2
+	(^||\s+\W)list(\W)--->$1items$2
+	(^||\s+\W)text(\W)--->$1name$2
+	(^||\s+\W)iconPath(\W)--->$1icon$2
+	(^||\s+\W)iconPath(\W)--->$1icon$2
+	(^||\s+\W)selectedIconPath(\W)--->$1activeIcon$2
+end
+
+OVER

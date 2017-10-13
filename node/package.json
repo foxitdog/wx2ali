@@ -1,6 +1,6 @@
 {
   "name": "wx2ali",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "scripts": {
     "start": "node ./index.js"
   },
@@ -10,5 +10,16 @@
   "bin": {
     "wx2ali": "index.js"
   },
+  "description": "微信小程序转支付宝小程序工具",
+  "keywords": [
+               "wxmp",
+               "wxapp",
+               "amp",
+               "antmp"
+             ],
+  "homepage": "https://github.com/foxitdog/wx2ali",
+  "bugs": {
+	    "url": "https://github.com/foxitdog/wx2ali/issues"
+	  },
   "main":"index.js"
 }
