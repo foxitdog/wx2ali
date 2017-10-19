@@ -1,11 +1,12 @@
 #!/usr/bin/env node
-var fs = require("fs");
-var path = require("path");
-var readline = require('linebyline');
-var arg = process.argv;
-var dir = path.dirname(arg[1]);
-var configpath = path.resolve(dir, "wx2ali.txt");
-var rl = readline(configpath);
+let fs = require("fs");
+let path = require("path");
+let readline = require('linebyline');
+let arg = process.argv;
+let dir = path.dirname(arg[1]);
+let configpath = path.resolve(dir, "wx2ali.txt");
+let rl = readline(configpath);
+let JSAPR=require("./lib/JSApiPropReplace.js")
 let Order = 0;
 /**
  * 将符合后缀的文件copy和修改后缀名为指定的后缀。e.g.
@@ -38,9 +39,12 @@ const config = {
     AXMLRegexp: [],
     AXMLToRegexp: [],
 	JSONRegexp:[],
-	JSONToRegexp:[]
+    JSONToRegexp:[],
+    JSApiPropReplace:{}
 };
-var state = "";
+let state = "";
+let jsaprstate="";
+// let jsaprprop="";
 rl
     .on('line', function (line, lineCount, byteCount) {
         line=line.replace(/#.*$/g, "").trim();
@@ -55,6 +59,8 @@ rl
                 state = line
             } else if ("JSON" === line) {
             	state = line
+            } else if ("JS_API_PROP_REPLACE" === line) {
+            	state = line
             } else if("OVER"===line){
                 main();
             }
@@ -62,17 +68,19 @@ rl
             state = "";
         } else if ("" === line) {
         } else if ("JSmethod" === state) {
-            var aTob = line.split("--->");
+            let aTob = line.split("--->");
             addUpdateMethods(aTob[0], aTob[1]);
         } else if ("JS" === state) {
-            var aTob = line.split("--->");
+            let aTob = line.split("--->");
             addJSRegexp(aTob[0], aTob[1]);
         } else if ("AXML" === state) {
-            var aTob = line.split("--->");
+            let aTob = line.split("--->");
             addAXMLRegexp(aTob[0], aTob[1]);
         } else if ("JSON" === state) {
-            var aTob = line.split("--->");
+            let aTob = line.split("--->");
             addJSONRegexp(aTob[0], aTob[1]);
+        } else if ("JS_API_PROP_REPLACE" === state) {
+            addToJSApiPropReplace(line)
         } else if ("DIR" === state) {
             config.dir = line;
             console.log("切换到修改文件路径：" + line);
@@ -84,6 +92,7 @@ rl
         console.log(e);
     });
 function main(){
+    // console.log(config.JSApiPropReplace)
     addUpdateSuffix("wxml", "axml");// 这边的order是UPDATESUFFIX 所以是修改后缀名 wxml->axml
     addUpdateSuffix("wxss", "acss");// wxss->acss
     setOrder(UPDATESUFFIX);
@@ -149,6 +158,33 @@ function clearJSONRegexp() {
     config.JSONRegexp = [];
     config.JSONToRegexp = [];
 }
+//----------------------------------- JSApiPropReplace
+function addToJSApiPropReplace(str) {
+    if(str==="PRO:"){
+        jsaprstate="";
+    }else if(str==="KEYS:"){
+
+    }else if(str.startsWith("KEYS:")&&jsaprstate!==""){
+        str=str.substring(5).trim()
+        let aTob = str.split("--->");
+        config.JSApiPropReplace[jsaprstate][aTob[0]]=aTob[1]
+    }else if(str.startsWith("PRO:")){
+        str=str.substring(4).trim()
+        jsaprstate=str;
+        config.JSApiPropReplace[jsaprstate]={};
+    }else if(jsaprstate===""){
+        jsaprstate=str;
+        config.JSApiPropReplace[jsaprstate]={};
+    }else if(jsaprstate!==""){
+        let aTob = str.split("--->");
+        config.JSApiPropReplace[jsaprstate][aTob[0]]=aTob[1]
+    }
+}
+
+// function clearJSONRegexp() {
+//     config.JSONRegexp = [];
+//     config.JSONToRegexp = [];
+// }
 // -----------------------------------
 function HandleFile(file) {
   
@@ -267,10 +303,11 @@ function wx2ant(file) {
             for (let i in methods) {// 修改不一样的方法
                 content = content.replace(new RegExp(preffix + methods[i], "g"), toPreffix + toMethods[i]);
             }
-            for (var i in JSRegexp) {// 修改不一样的方法
+            for (let i in JSRegexp) {// 修改不一样的方法
                 content = content.replace(new RegExp(JSRegexp[i], "g"), JSToRegexp[i]);
             }
             content = content.replace(new RegExp(preffix, "g"), toPreffix);// 统一修改未进行方法替换的前缀
+            content=JSAPR.replace(content,config.JSApiPropReplace);
             fs.writeFileSync(file, content);
             console.log("转换js文件：" + file);
         } catch (e) {
@@ -310,7 +347,7 @@ function wx2ant(file) {
 
 function isValid(file) {
     let suffix = config.suffix
-    for (var i in suffix) {
+    for (let i in suffix) {
         if (file.endsWith(suffix[i])) {
             return i;
         }
