@@ -9,21 +9,32 @@ DIR
 	Z:\Program\workspaces\wx\LogisticsCabinetwc\trunk\LogisticsCabinetwc
 end
 -----------------
-js方法的替换
+js函数名的替换
 -----------------
 JSmethod
 	request--->httpRequest
 	login--->getAuthCode
 	showModal--->confirm
+	getUserInfo--->getAuthUserInfo
+	requestPayment--->tradePay
+	saveImageToPhotosAlbum--->saveImage
+	setNavigationBarTitle--->setNavigationBar #导航栏标题
+	setNavigationBarColor--->setNavigationBar #导航栏颜色
+	getClipboardData--->getClipboard #粘贴板
+	setClipboardData--->setClipboard #粘贴板
+	scanCode--->scan
+	closeBLEConnection--->disconnectBLEDevice
 end
 -----------------
-js中的内容替换
+js中的函数参数的替换
 -----------------
 JS
 	getStorageSync\(\s*(\S+)\s*\)--->getStorageSync({key:$1})
 	setStorageSync\(\s*(\S+)\s*\,\s*(\S+)\s*\)--->setStorageSync({key:$1,data:$2})
 	removeStorageSync\(\s*(\S+)\s*\)--->removeStorageSync({key:$1})
-	(\S+)\s*:\s*function--->$1
+	vibrateLong\(\s*?\{[\w\W]*?\}\s*?\)--->vibrate()
+	vibrateShort\(\s*?\{[\w\W]*?\}\s*?\)--->vibrate()
+	(\S+)\s*:\s*function--->$1 #es6的对象方法样式
 end
 -----------------
 axml中的内容替换
@@ -49,6 +60,77 @@ JSON
 	(^||\s+\W)iconPath(\W)--->$1icon$2
 	(^||\s+\W)iconPath(\W)--->$1icon$2
 	(^||\s+\W)selectedIconPath(\W)--->$1activeIcon$2
+end
+-----------------
+js中的api参数对象的的属性名称替换
+-----------------
+JS_API_PROP_REPLACE
+	PRO: #api名称
+		showToast #showToast中的title
+	KEYS: #替换的属性名对
+		title--->content
+		icon--->type
+	#==========================================
+	PRO: 
+		showLoading #显示加载框
+	KEYS: 
+		title--->content
+	#==========================================	
+	PRO: 
+		confirm #显示提示框
+	KEYS: 
+		confirmText--->confirmButtonText
+		cancelText--->cancelButtonText
+	#==========================================	
+	PRO: 
+		showActionSheet
+	KEYS: 
+		itemList--->items
+	#==========================================	
+	PRO: 
+		setTextAlign
+	KEYS: 
+		align--->textAlign
+	#==========================================	
+	PRO: 
+		previewImage
+	KEYS: 
+		current--->current=string->number
+	#==========================================	
+	PRO: 
+		getLocation #获取位置
+	KEYS: 
+		type--->type=string->number
+	#==========================================
+	PRO: 
+		saveImage
+	KEYS: 
+		filePath--->url
+	#==========================================	
+	PRO: 
+		httpRequest
+	KEYS: 
+		header--->headers
+	#==========================================	
+	PRO: 
+		uploadFile
+	KEYS: 
+		name--->fileName
+	#==========================================	
+	PRO: 
+		connectSocket
+	KEYS: 
+		header--->headers
+	#==========================================	
+	PRO: 
+		setClipboard
+	KEYS: 
+		data--->text
+	#==========================================	
+	PRO: 
+		makePhoneCall
+	KEYS: 
+		phoneNumber--->number
 end
 
 OVER
