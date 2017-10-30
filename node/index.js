@@ -5,6 +5,44 @@ let readline = require('linebyline');
 let arg = process.argv;
 let dir = path.dirname(arg[1]);
 let configpath = path.resolve(dir, "wx2ali.txt");
+let dirPath="";
+if(arg[2]){
+    if(arg[2]==="--start"){
+
+    }else if(arg[2]==="--getConfig"){
+        console.log("配置路径："+configpath);
+        console.log("记得修改工作目录后保存配置 并且备份需要进行的转换工程");
+        return;
+    }else if(arg[2]==="--path"){
+        if(arg[3]){
+            try {
+                fs.accessSync(arg[3]);
+                dirPath=arg[3];
+            } catch (error) {
+                if(error.code==="ENOENT"){
+                    console.log("没有该文件或目录"+arg[3]);
+                }else{
+                    console.log(error);
+                }
+                return ;
+            }
+        }else{
+            console.log("请输入工作目录 如：wx2ali --path 'c:\\ab'");
+            return ;
+        }
+    }
+    else{
+        console.log("你可以输入wx2ali --getConfig 获取配置文件路径 然后修改配置文件");
+        console.log("你可以输入wx2ali --path <path路径> 以输入的path为工作路径开始转换");
+        console.log("你可以输入wx2ali --start开始转换(以配置中的路径为工作目录)");
+        return;
+    }
+}else{
+    console.log("你可以输入wx2ali --getConfig 获取配置文件路径 然后修改配置文件");
+    console.log("你可以输入wx2ali --path <path路径> 以输入的path为工作路径开始转换");
+    console.log("你可以输入wx2ali --start开始转换(以配置中的路径为工作目录)");
+    return;
+}
 let rl = readline(configpath);
 let JSAPR=require("./lib/JSApiPropReplace.js")
 let Order = 0;
@@ -82,7 +120,7 @@ rl
         } else if ("JS_API_PROP_REPLACE" === state) {
             addToJSApiPropReplace(line)
         } else if ("DIR" === state) {
-            config.dir = line;
+            config.dir = dirPath||line;
             console.log("切换到修改文件路径：" + line);
         } else if("OVER"===line){
             main();
@@ -100,6 +138,9 @@ function main(){
     clearSuffix();
     setOrder(WX2ANT);
     HandleFile(config.dir);
+    console.log("*****************************************************************************")
+    console.log("转换完成");
+    console.log("*****************************************************************************")
 }
 function setOrder(order) {
     Order = order;

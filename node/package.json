@@ -1,13 +1,13 @@
 {
   "name": "wx2ali",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "scripts": {
     "start": "node ./index.js"
   },
   "dependencies": {
     "linebyline": "^1.3.0",
-	"babel-core":"^6.26.0",
-	"ast-traverse": "^0.1.1"
+    "babel-core": "^6.26.0",
+    "ast-traverse": "^0.1.1"
   },
   "bin": {
     "wx2ali": "index.js"

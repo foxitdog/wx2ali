@@ -3,7 +3,7 @@
 *注意：以DIR,JSmethod,JS,AXML为开始，以end结尾，#为注释。如果不会请按模版修改
 ==============================
 -----------------
-文件目录 
+转换文件的目录 ***记得需要进行修改***
 -----------------
 DIR
 	Z:\Program\workspaces\wx\LogisticsCabinetwc\trunk\LogisticsCabinetwc
@@ -22,6 +22,7 @@ JSmethod
 	setNavigationBarColor--->setNavigationBar #导航栏颜色
 	getClipboardData--->getClipboard #粘贴板
 	setClipboardData--->setClipboard #粘贴板
+	canvasToTempFilePath--->toTempFilePath #1.1.3 当前画布的内容导出生成图片
 	scanCode--->scan
 	closeBLEConnection--->disconnectBLEDevice
 end
@@ -44,6 +45,23 @@ AXML
 	(^||\s+)bindtap(\W+)--->$1onTap$2
 	(^||\s+)bindlongTap(\W+)--->$1onLongTap$2
 	(^||\s+)bindinput(\W+)--->$1onInput$2
+	(^||\s+)bindchange(\W+)--->$1onChange$2
+	(^||\s+)bindinput(\W+)--->$1onInput$2
+	(^||\s+)bindfocus(\W+)--->$1onFocus$2
+	(^||\s+)bindblur(\W+)--->$1onBlur$2
+	(^||\s+)bindconfirm(\W+)--->$1onConfirm$2
+	(^||\s+)bindsubmit(\W+)--->$1onSubmit$2
+	(^||\s+)bindreset(\W+)--->$1onReset$2
+	(^||\s+)bindtouchstart(\W+)--->$1onTouchStart$2
+	(^||\s+)bindtouchmove(\W+)--->$1onTouchMove$2
+	(^||\s+)bindtouchend(\W+)--->$1onTouchEnd$2
+	(^||\s+)bindtouchcancel(\W+)--->$1onTouchCancel$2
+	(^||\s+)bindlongtap(\W+)--->$1onLongTap$2
+	(^||\s+)bindmarkertap(\W+)--->$1onMarkerTap$2
+	(^||\s+)bindcallouttap(\W+)--->$1onCalloutTap$2
+	(^||\s+)bindcontroltap(\W+)--->$1onControlTap$2
+	(^||\s+)bindregionchange(\W+)--->$1onRegionChange$2
+	(^||\s+)canvas-id(\W+)--->$1id$2
 	(^||\s+)bind(\w+)(\W+)--->$1on$2$3
 end
 -----------------
