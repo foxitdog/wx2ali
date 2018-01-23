@@ -78,6 +78,8 @@ const config = {
     AXMLToRegexp: [],
 	JSONRegexp:[],
     JSONToRegexp:[],
+	ACSSRegexp:[],
+    ACSSToRegexp:[],
     JSApiPropReplace:{}
 };
 let state = "";
@@ -92,6 +94,8 @@ rl
             } else if ("JS" === line) {
                 state = line
             } else if ("AXML" === line) {
+                state = line
+            } else if ("ACSS" === line) {
                 state = line
             } else if ("DIR" === line) {
                 state = line
@@ -114,6 +118,9 @@ rl
         } else if ("AXML" === state) {
             let aTob = line.split("--->");
             addAXMLRegexp(aTob[0], aTob[1]);
+        } else if ("ACSS" === state) {
+            let aTob = line.split("--->");
+            addACSSRegexp(aTob[0], aTob[1]);
         } else if ("JSON" === state) {
             let aTob = line.split("--->");
             addJSONRegexp(aTob[0], aTob[1]);
@@ -189,6 +196,18 @@ function clearAXMLRegexp() {
     config.AXMLRegexp = [];
     config.AXMLToRegexp = [];
 }
+
+// ----------------------------------- acss要更新的正则表达式
+function addACSSRegexp(suffix, toSuffix) {
+    config.ACSSRegexp.push(suffix);
+    config.ACSSToRegexp.push(toSuffix);
+}
+
+function clearACSSRegexp() {
+    config.ACSSRegexp = [];
+    config.ACSSToRegexp = [];
+}
+
 //----------------------------------- json要更新的正则表达式
 function addJSONRegexp(suffix, toSuffix) {
     config.JSONRegexp.push(suffix);
@@ -382,6 +401,20 @@ function wx2ant(file) {
         } catch (e) {
             console.log(e)
             console.log("转换json文件出错：" + file);
+        }
+    }else if (path.extname(file) === ".acss") {
+        let ACSSRegexp = config.ACSSRegexp;
+        let ACSSToRegexp = config.ACSSToRegexp;
+        try {
+            let content = fs.readFileSync(file, "utf8");
+            for (let i in ACSSRegexp) {// 修改不一样的方法
+                content = content.replace(new RegExp(ACSSRegexp[i], "g"), ACSSToRegexp[i]);
+            }
+            fs.writeFileSync(file, content);
+            console.log("转换acss文件：" + file);
+        } catch (e) {
+            console.log(e)
+            console.log("转换acss文件出错：" + file);
         }
     }
 }

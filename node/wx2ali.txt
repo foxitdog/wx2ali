@@ -30,6 +30,8 @@ end
 js中的函数参数的替换
 -----------------
 JS
+	(var|let|const)\s+(\w+)\s*=\s*require\(\s*(\S*)\s*\)--->import $2 from $3 #将require类型的导入替换成import类型的导入 处理https://github.com/foxitdog/wx2ali/issues/2问题
+	module.exports *= *(\S*)--->export default $1 #将module.exports类型的导出替换成export default 类型的导出 处理https://github.com/foxitdog/wx2ali/issues/2问题
 	getStorageSync\(\s*(\S+?)\s*\)--->getStorageSync({key:$1})
 	setStorageSync\(\s*(\S+?)\s*\,\s*(\S+)\s*\)--->setStorageSync({key:$1,data:$2})
 	removeStorageSync\(\s*(\S+?)\s*\)--->removeStorageSync({key:$1})
@@ -63,6 +65,12 @@ AXML
 	(^||\s+)bindregionchange(\W+)--->$1onRegionChange$2
 	(^||\s+)canvas-id(\W+)--->$1id$2
 	(^||\s+)bind(\w+)(\W+)--->$1on$2$3
+end
+-----------------
+ACSS中的内容替换
+-----------------
+ACSS
+	(@import\s*['"]\S*?)\.wxss(['"])--->$1.acss$2
 end
 -----------------
 json中的内容替换

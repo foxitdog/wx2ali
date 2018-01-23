@@ -43,6 +43,11 @@
 2. js文件有进行过ast转换 可以转换到方法名称
 
 ## 更新: ##
+	v1.1.5
+		修复wxss文件中会import wxss文件，这个没有被转换	https://github.com/foxitdog/wx2ali/issues/4
+		将require类型的导入替换成import类型的导入
+		将module.exports类型的导出替换成export default 类型的导出 https://github.com/foxitdog/wx2ali/issues/2
+	------------------------
 	v1.1.4
 		wx2ali.txt规则修改
 		修复多匹配问题 https://github.com/foxitdog/wx2ali/issues/3
