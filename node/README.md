@@ -43,6 +43,10 @@
 2. js文件有进行过ast转换 可以转换到方法名称
 
 ## 更新: ##
+	v1.1.4
+		wx2ali.txt规则修改
+		修复多匹配问题 https://github.com/foxitdog/wx2ali/issues/3
+	------------------------
 	v1.1.3
 		wx2ali.txt规则增加
 		axml文件转换更为彻底

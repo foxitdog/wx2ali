@@ -30,9 +30,9 @@ end
 js中的函数参数的替换
 -----------------
 JS
-	getStorageSync\(\s*(\S+)\s*\)--->getStorageSync({key:$1})
-	setStorageSync\(\s*(\S+)\s*\,\s*(\S+)\s*\)--->setStorageSync({key:$1,data:$2})
-	removeStorageSync\(\s*(\S+)\s*\)--->removeStorageSync({key:$1})
+	getStorageSync\(\s*(\S+?)\s*\)--->getStorageSync({key:$1})
+	setStorageSync\(\s*(\S+?)\s*\,\s*(\S+)\s*\)--->setStorageSync({key:$1,data:$2})
+	removeStorageSync\(\s*(\S+?)\s*\)--->removeStorageSync({key:$1})
 	vibrateLong\(\s*?\{[\w\W]*?\}\s*?\)--->vibrate()
 	vibrateShort\(\s*?\{[\w\W]*?\}\s*?\)--->vibrate()
 	(\S+)\s*:\s*function--->$1 #es6的对象方法样式
