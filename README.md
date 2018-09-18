@@ -1,9 +1,13 @@
 # 微信小程序转支付宝小程序 #
 **现在只进行node版本更新 java版本已经舍弃**
-###说明：###
+
+## 说明： ##
+
 	这是一个将微信小程序中的大多数与支付宝小程序功能相关，格式相似的api与属性转化为支付包小程序的格式
 	其中包含了json、js、wxml的转换，但是转换只是治标并不治本，所以转化结束的源码中的一些错误还是需要靠自己进行解决。
 	该程序可以给你的代码迁移省下一部分的精力。
+配置文件中的配置已经长时间未进行更新，如有问题，烦请反馈了。
+	
 ## 环境配置： ##
 	node.js
 ## 安装 ##
@@ -17,13 +21,16 @@
 1.  wx2ali --start
 1. 	等待处理完成。
 1. 或者可以通过 wx2ali --path path路径   开始转换
-	
+
+<a href="https://github.com/foxitdog/wx2ali" target="_blank">
+<img align="center" alt="usage.gif" src="https://github.com/foxitdog/wx2ali/blob/master/img/usage.gif" />
+</a>
+
 ## 注意事项 ##
 
-<b style="color:red">因为是用正则表达式进行转换，所以已经转换过的文件请不要进行二次转换，防止发生不必要的麻烦。
-
+1. <b style="color:red">因为是用正则表达式进行转换，所以已经转换过的文件请不要进行二次转换，防止发生不必要的麻烦。
 多发生在js文件中。</b>
-
+2. <b style="color:red">如果是mac，请将/usr/local/lib/node_modules/wx2ali/wx2ali.txt 复制到 /usr/local/bin/目录下，之后就是按顺序执行‘使用’步骤即可</b>[#5](https://github.com/foxitdog/wx2ali/issues/5 "mac环境下转换无配置文件")
 
 ## 文件: ##
 	node
