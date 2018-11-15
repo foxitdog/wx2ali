@@ -3,3 +3,4 @@
 bin
 node/node_modules
 xx
+node/package-lock.json

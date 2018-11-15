@@ -7,7 +7,9 @@ module.exports.replace=function(content,config){
     let end=0;
     let contentArray=[];
     try {
-      ast = babel.transform(content);
+      ast = babel.transform(content, {
+        plugins: ["transform-object-rest-spread"]
+      });
       traverse(ast.ast, {
         pre: function (node, parent, prop, idx) {
           if (node.type === "CallExpression" && node.callee.type === "MemberExpression" && node.arguments[0]!=undefined&& node.arguments[0].type === "ObjectExpression") {
