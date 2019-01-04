@@ -43,6 +43,11 @@
 2. js文件有进行过ast转换 可以转换到方法名称
 
 ## 更新: ##
+	v1.1.7
+		解决babel-plugin-transform-object-rest-spread插件未找到问题
+		https://github.com/foxitdog/wx2ali/issues/9
+	v1.1.6
+		解决：转换es6扩展运算符出错
 	v1.1.5
 		修复wxss文件中会import wxss文件，这个没有被转换	https://github.com/foxitdog/wx2ali/issues/4
 		将require类型的导入替换成import类型的导入

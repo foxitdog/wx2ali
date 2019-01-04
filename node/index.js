@@ -3,8 +3,7 @@ let fs = require("fs");
 let path = require("path");
 let readline = require('linebyline');
 let arg = process.argv;
-let dir = path.dirname(arg[1]);
-let configpath = path.resolve(dir, "wx2ali.txt");
+let configpath = path.resolve(__dirname, "wx2ali.txt");
 let dirPath="";
 if(arg[2]){
     if(arg[2]==="--start"){
@@ -128,7 +127,7 @@ rl
             addToJSApiPropReplace(line)
         } else if ("DIR" === state) {
             config.dir = dirPath||line;
-            console.log("切换到修改文件路径：" + line);
+            console.log("切换到修改文件路径：" + config.dir);
         } else if("OVER"===line){
             main();
         }
